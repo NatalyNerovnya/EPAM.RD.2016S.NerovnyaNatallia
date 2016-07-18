@@ -21,6 +21,7 @@ namespace FileStreams
             LineCopy(source, destin);
             MemoryBufferCopy(source, destin);
             WebClient();
+            Console.Read();
         }
 
         public static void ByteCopy(string source, string destin)
