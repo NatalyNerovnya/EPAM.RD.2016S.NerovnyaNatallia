@@ -25,19 +25,36 @@ namespace ConsoleApplication1
             Dispose(true);
         }
 
-        public virtual void Dispose()
+        public/* virtual*/ void Dispose()
         {
             Dispose(true);
         }
 
-        private void Dispose(bool disposing)
+        /*private*/ protected virtual void Dispose(bool disposing) // There wasn't virtual keyword here
         {
-            // TODO: Add your implementations here.
+            if (_disposed)
+                return;
+
+            //ReleaseBuffer(_buffer); // release unmanaged memory
+
+            if (disposing)
+            {
+                if (_resource != null)
+                    _resource.Dispose();
+            }
+
+            _disposed = true;
+
         }
+
 
         public void DoSomething()
         {
             // NOTE: Manupulation with _buffer and _resource in this line.
+            if (_disposed)
+                throw new ObjectDisposedException("_resources has been cleaned");
+            // now call some native methods using the resource 
+
         }
     }
 }
