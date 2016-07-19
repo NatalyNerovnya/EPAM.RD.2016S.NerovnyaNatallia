@@ -27,7 +27,7 @@ namespace Monitor
                     }
                 };
 
-                Thread thread = null; // TODO: Create a new thread that will run the delegate above here.
+                Thread thread = new Thread(new ThreadStart(d)); // TODO: Create a new thread that will run the delegate above here.
 
                 threads[i] = thread;
             }
@@ -39,7 +39,7 @@ namespace Monitor
         {
             EventWaitHandle ewh;
 
-            ewh = null; // TODO: Choose between manual or auto reset events to synchronize threads.
+            ewh = new EventWaitHandle(false, EventResetMode.ManualReset); // TODO: Choose between manual or auto reset events to synchronize threads.
 
             var myClass = new MyClass();
             var anClass = new AnotherClass();
@@ -47,10 +47,12 @@ namespace Monitor
             var threads = new List<Thread>();
 
             threads.AddRange(CreateWorkers(ewh, () => { myClass.Increase(); anClass.Decrease(); }, 10, 100000));
-            threads.AddRange(CreateWorkers(ewh, () => { myClass.Decrease(); anClass.Decrease(); }, 10, 100000));
+            threads.AddRange(CreateWorkers(ewh, () => { myClass.Decrease(); anClass.Increase(); }, 10, 100000));
 
             foreach (var thread in threads)
             {
+                thread.Start();
+
                 // TODO: Start all the threads.
             }
 
@@ -62,6 +64,7 @@ namespace Monitor
 
             foreach (var thread in threads)
             {
+                thread.Join();
                 // TODO: Wait unit all threads will finish their work.
             }
 
