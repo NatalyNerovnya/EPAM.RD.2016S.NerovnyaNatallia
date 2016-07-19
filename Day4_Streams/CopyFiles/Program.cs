@@ -9,35 +9,38 @@ namespace FileStreams
     {
         public static void Main(string[] args)
         {
-            if (args.Length < 2)
-            {
-                Console.WriteLine("Arguments: <source> <destination>");
-
-                Console.ReadLine();
-                //return;
-            }
-
+            #region Fields
             string source = "TextFile.txt";//args[0];
-            string destin = "SourceFile.txt";//args[1];
+            string destinByte = "ByteFile.txt";//args[1];
+            string destinBlock = "BlockFile.txt";
+            string destinLine = "LineFile.txt";
+            string destinMemoryBuffer = "BufferFile.txt";
+            #endregion
 
-            ByteCopy(source, destin);
-            Console.ReadLine();
-            BlockCopy(source, destin);
-            LineCopy(source, destin);
-            Console.ReadLine();
-            MemoryBufferCopy(source, destin);
-            Console.ReadLine();
+            //if (args.Length < 2)
+            //{
+            //    Console.WriteLine("Arguments: <source> <destination>");
+
+            //    Console.ReadLine();
+            //    //return;
+            //}
+
+
+            ByteCopy(source, destinByte);
+            BlockCopy(source, destinBlock); // Don't like the result
+            LineCopy(source, destinLine);
+            MemoryBufferCopy(source, destinMemoryBuffer);// Don't like the result
             WebClient();
         }
 
-        public static void ByteCopy(string source, string destin)
+        public static void ByteCopy(string source, string destinByte)
         {
             int bytesCounter = 0;
 
             // TODO: Implement byte-copy here.
 
             using (var sourceStream = new FileStream(source, FileMode.Open, FileAccess.Read))
-            using (var destinStream = new FileStream(destin, FileMode.CreateNew, FileAccess.Write))
+            using (var destinStream = new FileStream(destinByte, FileMode.OpenOrCreate, FileAccess.Write))
             {
                 int b;
                 while ((b = sourceStream.ReadByte()) != -1) // TODO: read byte
@@ -46,7 +49,7 @@ namespace FileStreams
                     destinStream.WriteByte((byte)b); // TODO: write byte
                 }
             }
-            
+
             Console.WriteLine("ByteCopy() done. Total bytes: {0}", bytesCounter);
         }
 
@@ -59,14 +62,13 @@ namespace FileStreams
             {
                 byte[] buffer = new byte[1024];
                 int bytesRead = 0;
-                int numBytesToRead = (int)source.Length;
 
                 do
                 {
-                    bytesRead = sourceStream.Read(buffer, bytesRead, numBytesToRead); // TODO: read in buffer
+                    bytesRead = sourceStream.Read(buffer, 0, buffer.Length); // TODO: read in buffer
 
                     Console.WriteLine("BlockCopy(): writing {0} bytes.", bytesRead);
-                    destinStream.Write(buffer, 0, numBytesToRead); // TODO: write to buffer
+                    destinStream.Write(buffer, 0, buffer.Length); // TODO: write to buffer
                 }
                 while (bytesRead == buffer.Length);
             }
@@ -116,17 +118,16 @@ namespace FileStreams
                 content = textReader.ReadToEnd(); // TODO: read entire file
             }
 
-            using (var sourceReader = new StreamReader(source)) // TODO: Use StringReader here with content
-            using (var sourceWriter = new StreamWriter()) // TODO: Use StringWriter here with stringBuilder
+            using (var sourceReader = new StringReader(content)) // TODO: Use StringReader here with content
+            using (var sourceWriter = new StringWriter(stringBuilder)) // TODO: Use StringWriter here with stringBuilder
             {
                 string line = null;
-
                 do
                 {
-                    line = ... // TODO: read line
+                    line = sourceReader.ReadLine(); // TODO: read line
                     if (line != null)
                     {
-                        sourceWriter....(line); // TODO: write line
+                        sourceWriter.WriteLine(line); // TODO: write line
                     }
 
                 } while (line != null);
@@ -136,41 +137,46 @@ namespace FileStreams
 
             const int blockSize = 1024;
 
-            using (var stringReader = new ...)) // TODO: Use StringReader to read from stringBuilder.
+            using (var stringReader = new StringReader(stringBuilder.ToString())) // TODO: Use StringReader to read from stringBuilder.
             using (var memoryStream = new MemoryStream(blockSize))
-            using (var streamWriter = new ...) // TODO: Compose StreamWriter with memory stream.
-            using (var destinStream = new ...) // TODO: Use file stream.
+            using (var streamWriter = new StreamWriter(memoryStream)) // TODO: Compose StreamWriter with memory stream.
+            using (var destinStream = new FileStream(destin, FileMode.OpenOrCreate)) // TODO: Use file stream.
             {
                 char[] buffer = new char[blockSize];
-                int bytesRead;
-
+                int bytesRead = 0;
                 do
                 {
-                    bytesRead = ...; // TODO: Read block from stringReader to buffer.
-                    ...; // TODO: Write buffer to streamWriter.
+                    bytesRead = stringReader.ReadBlock(buffer, 0, buffer.Length); // TODO: Read block from stringReader to buffer.
+                    streamWriter.Write(buffer, 0, buffer.Length); // TODO: Write buffer to streamWriter.
 
-                TODO: After implementing everythin check the content of NewTextFile. What's wrong with it, and how this may be fixed?
+                    //TODO: After implementing everythin check the content of NewTextFile. What's wrong with it, and how this may be fixed?
 
-               ...(memoryStream.GetBuffer()...; // TODO: write memoryStream.GetBuffer() content to destination stream.
+                    destinStream.Write(memoryStream.GetBuffer(), 0, memoryStream.GetBuffer().Length); // TODO: write memoryStream.GetBuffer() content to destination stream.
                 }
                 while (bytesRead == blockSize);
+
             }
+    }
 
 
-        }
+ 
 
         public static void WebClient()
         {
             WebClient webClient = new WebClient();
             using (var stream = webClient.OpenRead("http://google.com"))
             {
-                /*
-                Console.WriteLine("WebClient(): CanRead = {0}", stream...); // TODO: print if it is possible to read from the stream
-                Console.WriteLine("WebClient(): CanWrite = {0}", stream...); // TODO: print if it is possible to write to the stream
-                Console.WriteLine("WebClient(): CanSeek = {0}", stream...); // TODO: print if it is possible to seek through the stream
-                */
 
-                // TODO: Save steam content to "google_request.txt" file.
+                Console.WriteLine("WebClient(): CanRead = {0}", stream.CanRead); // TODO: print if it is possible to read from the stream
+                Console.WriteLine("WebClient(): CanWrite = {0}", stream.CanWrite); // TODO: print if it is possible to write to the stream
+                Console.WriteLine("WebClient(): CanSeek = {0}", stream.CanSeek); // TODO: print if it is possible to seek through the stream
+
+                using (var fileStream = new FileStream("google_request.txt", FileMode.Create, FileAccess.Write))
+                {
+                    stream.CopyTo(fileStream);
+                }
+
+                //TODO: Save steam content to "google_request.txt" file.
             }
         }
     }
