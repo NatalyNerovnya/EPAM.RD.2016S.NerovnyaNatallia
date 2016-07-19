@@ -22,27 +22,26 @@ namespace ConsoleApplication1
 
         ~MyClass()
         {
-            Dispose(true);
+            Dispose(/*true*/ false);
         }
 
         public/* virtual*/ void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
-        /*private*/ protected virtual void Dispose(bool disposing) // There wasn't virtual keyword here
+        /*private*/
+        protected virtual void Dispose(bool disposing) // There wasn't virtual keyword here
         {
             if (_disposed)
                 return;
-
-            //ReleaseBuffer(_buffer); // release unmanaged memory
-
             if (disposing)
             {
                 if (_resource != null)
                     _resource.Dispose();
             }
-
+            Helper.DeallocateBuffer(_buffer);
             _disposed = true;
 
         }
@@ -54,7 +53,8 @@ namespace ConsoleApplication1
             if (_disposed)
                 throw new ObjectDisposedException("_resources has been cleaned");
             // now call some native methods using the resource 
-
+            var smth = _resource.IsInvalid;
+            var a = _resource.IsClosed;
         }
     }
 }
