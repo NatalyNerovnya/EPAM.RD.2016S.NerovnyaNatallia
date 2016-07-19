@@ -26,11 +26,11 @@ namespace FileStreams
             //}
 
 
-            ByteCopy(source, destinByte);
-            BlockCopy(source, destinBlock); // Don't like the result
-            LineCopy(source, destinLine);
+            //ByteCopy(source, destinByte);
+            //BlockCopy(source, destinBlock);
+            // LineCopy(source, destinLine);
             MemoryBufferCopy(source, destinMemoryBuffer);// Don't like the result
-            WebClient();
+            //WebClient();
         }
 
         public static void ByteCopy(string source, string destinByte)
@@ -58,20 +58,19 @@ namespace FileStreams
             // TODO: Implement block copy via buffer.
 
             using (var sourceStream = new FileStream(source, FileMode.Open))
-            using (var destinStream = new FileStream(destin, FileMode.OpenOrCreate))
+            using (var destinStream = new FileStream(destin, FileMode.Create))
             {
                 byte[] buffer = new byte[1024];
                 int bytesRead = 0;
-
                 do
                 {
-                    bytesRead = sourceStream.Read(buffer, 0, buffer.Length); // TODO: read in buffer
-
+                    bytesRead = sourceStream.Read(buffer, 0, buffer.Length);
                     Console.WriteLine("BlockCopy(): writing {0} bytes.", bytesRead);
-                    destinStream.Write(buffer, 0, buffer.Length); // TODO: write to buffer
+                    destinStream.Write(buffer, 0, bytesRead);
                 }
-                while (bytesRead == buffer.Length);
+                while (bytesRead > 0);
             }
+
 
         }
 
@@ -150,16 +149,15 @@ namespace FileStreams
                     streamWriter.Write(buffer, 0, buffer.Length); // TODO: Write buffer to streamWriter.
 
                     //TODO: After implementing everythin check the content of NewTextFile. What's wrong with it, and how this may be fixed?
-
                     destinStream.Write(memoryStream.GetBuffer(), 0, memoryStream.GetBuffer().Length); // TODO: write memoryStream.GetBuffer() content to destination stream.
                 }
                 while (bytesRead == blockSize);
 
             }
-    }
+        }
 
 
- 
+
 
         public static void WebClient()
         {

@@ -103,7 +103,10 @@ namespace Storage
                 {
                     Users.Add(user);
                 }
+                
+                //IdIterator = new UserIdIterator(users.Last().Id);
             }
+            
         }
 
         private void OnAction(ActionEventArgs e)
