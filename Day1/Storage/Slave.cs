@@ -15,12 +15,12 @@ namespace Storage
     {
         public Slave(UserStorage master)
         {
-            if (master.CountSlaves > value)
-            {                
-                throw new ArgumentException();
-            }
-            Master = master;
-            Register();
+            //if (master.CountSlaves > value)
+            //{                
+            //    throw new ArgumentException();
+            //}
+            //Master = master;
+            //Register();
         }
 
         public IUserStorage Master { get; private set; }

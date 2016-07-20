@@ -101,9 +101,10 @@ namespace UnitTestProject1
         public void SortByName()
         {
             var actualDataFirstList = new List<User>();
-            var expectedData = userListFirst[3];
+            var expectedData = userListFirst[4];
 
             //ToDo Add code first list
+            actualDataFirstList = userListFirst.OrderBy(u => u.Name).ToList();
 
             Assert.IsTrue(actualDataFirstList[0].Equals(expectedData));
         }
@@ -112,9 +113,10 @@ namespace UnitTestProject1
         public void SortByNameDescending()
         {
             var actualDataSecondList = new List<User>();
-            var expectedData = userListFirst[4];
+            var expectedData = userListFirst[0];
 
             //ToDo Add code first list
+            actualDataSecondList = userListFirst.OrderByDescending(u => u.Name).ToList();
 
             Assert.IsTrue(actualDataSecondList[0].Equals(expectedData));
             
@@ -124,9 +126,10 @@ namespace UnitTestProject1
         public void SortByNameAndAge()
         {
             var actualDataSecondList = new List<User>();
-            var expectedData = userListSecond[5];
+            var expectedData = userListSecond[4];
 
             //ToDo Add code second list
+            actualDataSecondList = userListSecond.OrderBy(u => u.Name).ThenBy(u=>u.Age).ToList();
 
             Assert.IsTrue(actualDataSecondList[0].Equals(expectedData));
         }
@@ -138,7 +141,7 @@ namespace UnitTestProject1
             var expectedData = new List<User> {userListSecond[0], userListSecond[1], userListSecond[3], userListSecond[4],userListSecond[5]};
 
             //ToDo Add code second list
-
+            actualDataSecondList = userListSecond.Distinct().ToList();
             CollectionAssert.AreEqual(expectedData, actualDataSecondList);
         }
 
@@ -149,7 +152,7 @@ namespace UnitTestProject1
             var expectedData = new List<User> { userListFirst[0], userListFirst[2], userListFirst[3] };
 
             //ToDo Add code first list
-
+            actualData = userListFirst.Except(userListSecond).ToList();
             CollectionAssert.AreEqual(expectedData, actualData);
         }
 
@@ -159,6 +162,7 @@ namespace UnitTestProject1
             var actualData = new List<User>();
             var expectedData = new List<User> { userListSecond[0], userListSecond[2] };
 
+            actualData = userListSecond.Where(u => u.Name == "Max").ToList();
             //ToDo Add code for second list
 
             CollectionAssert.AreEqual(expectedData, actualData);
@@ -171,23 +175,26 @@ namespace UnitTestProject1
 
             //name max 
             //ToDo Add code for second list
+            isContain = userListSecond.Exists(u => u.Name == "Max");
 
             Assert.IsTrue(isContain);
 
             // name obama
             //ToDo add code for second list
+            isContain = userListSecond.Exists(u => u.Name == "Obama");
             Assert.IsFalse(isContain);
         }
 
         [TestMethod]
         public void AllListWithName()
         {
-            var isAll = true;
+            var isAll = false;
 
             //name max 
             //ToDo Add code for second list
+            isAll = userListSecond.TrueForAll(u => u.Name == "Max");
 
-            Assert.IsTrue(isAll);
+            Assert.IsFalse(isAll);
         }
 
         [TestMethod]
@@ -199,6 +206,8 @@ namespace UnitTestProject1
             {
                 //ToDo Add code for second list
                 //name Max
+                actualData = userListSecond.Single(u => u.Name == "Max");
+                Assert.Fail();
             }
             catch (InvalidOperationException ie)
             {
@@ -219,6 +228,8 @@ namespace UnitTestProject1
             {
                 //ToDo Add code for second list
                 //name Ldfsdfsfd
+                actualData = userListSecond.Single(u => u.Name == "Ldfsdfsfd");
+                Assert.Fail();
             }
             catch (InvalidOperationException ie)
             {
@@ -237,9 +248,9 @@ namespace UnitTestProject1
 
             //ToDo Add code for second list
 
-             //name Ldfsdfsfd
+            //name Ldfsdfsfd
 
-
+            actualData = userListSecond.SingleOrDefault(u => u.Name == "Ldfsdfsfd");
             Assert.IsTrue(actualData == null);
         }
 
@@ -253,6 +264,8 @@ namespace UnitTestProject1
             {
                 //ToDo Add code for second list
                 //name Ldfsdfsfd
+                actualData = userListSecond.First(u => u.Name == "Ldfsdfsfd");
+                Assert.Fail();
             }
             catch (InvalidOperationException ie)
             {
@@ -271,7 +284,7 @@ namespace UnitTestProject1
 
             //ToDo Add code for second list
             //name Ldfsdfsfd
-
+            actualData = userListSecond.FirstOrDefault(u => u.Name == "Ldfsdfsfd");
             Assert.IsTrue(actualData == null);
         }
 
@@ -282,7 +295,7 @@ namespace UnitTestProject1
             var actualData = new User();
 
             //ToDo Add code for first list
-
+            
             Assert.IsTrue(expectedData == actualData.Salary);
         }
 
