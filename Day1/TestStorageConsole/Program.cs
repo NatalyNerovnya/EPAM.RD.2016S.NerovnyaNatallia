@@ -43,7 +43,8 @@ namespace TestStorageConsole
                 Gender = Gender.Male,
                 VisaRecords = null
             });
-            userRepo.Save();
+
+
             var user3 = userRepo.GetAll().LastOrDefault();
             var user4 = userRepo.SearchForUsers(u => u.Gender == (Gender)1);
             userRepo.Delete(user2);

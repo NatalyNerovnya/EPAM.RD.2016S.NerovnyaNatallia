@@ -16,7 +16,6 @@ namespace Storage
         #region Fields
         public event Action actionOnAdd;
         public event Action actionOnDelete;
-        private static int countSlaves;
 
         #endregion
 
@@ -37,8 +36,12 @@ namespace Storage
 
             IdIterator.GetId();
             Users = new List<User>();
-            countSlaves = Convert.ToInt32(ConfigurationSettings.AppSettings["slaves"]);
-            Slaves = new List<ISlave>(countSlaves);
+            CapacityOfSlaves = Convert.ToInt32(ConfigurationSettings.AppSettings["slaves"]);
+            Slaves = new List<ISlave>(CapacityOfSlaves);
+            for (int i = 0; i < CapacityOfSlaves; i++)
+            {
+                Slaves.Add(new Slave(this));
+            }
         }
 
         #endregion
@@ -48,17 +51,13 @@ namespace Storage
         public IUserIdIterator IdIterator { get; private set; }
         public IUserValidator Validator { get; private set; }
         public List<ISlave> Slaves { get; private set; }
-        public int CountSlaves
-        {
-            get { return countSlaves; }
-            set { countSlaves = value; }
-        }
+        public int CountSlaves { get; set; }
+        public static int CapacityOfSlaves { get; private set; }
 
         #endregion
 
         #region Public Methods
 
-        // TODO add event handling
         public virtual int Add(User user)
         {
             if (user == null)
@@ -67,11 +66,10 @@ namespace Storage
                 throw new ArgumentException("not valid user data");
             user.Id = IdIterator.GetUserId();
             Users.Add(user);
-            //actionOnAdd.
+            actionOnAdd();
             return user.Id;
         }
 
-        // TODO add event handling
         public virtual void Delete(User user)
         {
             if (user == null)
@@ -82,6 +80,7 @@ namespace Storage
                 Users.Remove(userToDelete);
                 
             }
+            actionOnDelete();
         }
 
         public IEnumerable<User> GetAll()
@@ -102,11 +101,12 @@ namespace Storage
         //This should do slaves
         public void Save()
         {
-            XmlSerializer formatter = new XmlSerializer(typeof(List<User>));
-            using (FileStream fs = new FileStream(ConfigurationSettings.AppSettings["path"], FileMode.Create))
-            {
-                formatter.Serialize(fs, Users);
-            }
+            //XmlSerializer formatter = new XmlSerializer(typeof(List<User>));
+            //using (FileStream fs = new FileStream(ConfigurationSettings.AppSettings["path"], FileMode.Create))
+            //{
+            //    formatter.Serialize(fs, Users);
+            //}
+            throw new NotImplementedException();
         }
 
         public void Load()

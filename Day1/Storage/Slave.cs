@@ -15,9 +15,7 @@ namespace Storage
     {
         public Slave(UserStorage master)
         {
-
-            int value = Convert.ToInt32(ConfigurationSettings.AppSettings["slaves"]);
-            if (master.CountSlaves >= value)
+            if (master.CountSlaves > value)
             {                
                 throw new ArgumentException();
             }

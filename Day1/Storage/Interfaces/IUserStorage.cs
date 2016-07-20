@@ -9,6 +9,7 @@ namespace Storage.Interfaces
 {
     public interface IUserStorage
     {
+        int CountSlaves { get; set; }
         List<User> Users { get; set; }
         IUserIdIterator IdIterator { get; }
         IUserValidator Validator { get; }
