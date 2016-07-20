@@ -295,7 +295,8 @@ namespace UnitTestProject1
             var actualData = new User();
 
             //ToDo Add code for first list
-            
+            actualData = userListFirst.OrderBy(s => s.Salary).LastOrDefault();
+
             Assert.IsTrue(expectedData == actualData.Salary);
         }
 
@@ -306,10 +307,13 @@ namespace UnitTestProject1
             var actualData = 0;
 
             //ToDo Add code for second list
-
+            actualData = userListSecond.Where(n => n.Name == "Max").Count();
             Assert.IsTrue(expectedData == actualData);
         }
 
+
+        //сравнить два анонимных типа(коллекции а не их длины)
+        //мокаем коллекцию из всех полей. делаем выборку (тоже анонимную)
         [TestMethod]
         public void Join()
         {

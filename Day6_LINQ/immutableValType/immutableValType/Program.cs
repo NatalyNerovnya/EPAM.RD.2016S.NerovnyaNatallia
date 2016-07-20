@@ -3,7 +3,7 @@
 namespace immutableValType
 {
     // Point  размерный тип.
-    internal struct Point
+    internal struct Point : IChange
     {
         private int _x, _y;
         public Point(int x, int y)
@@ -20,6 +20,10 @@ namespace immutableValType
             return string.Format("({0}, {1})", _x, _y);
         }
     }
+    public interface IChange
+    {
+        void Change(int x, int y);
+    }
     public sealed class Program
     {
         public static void Main()
@@ -32,7 +36,11 @@ namespace immutableValType
             Console.WriteLine(o);
             ((Point)o).Change(3, 3);
             Console.WriteLine(o);
+            ((IChange)o).Change(4, 4);
+            Console.WriteLine(o);
             Console.ReadLine();
+
+
         }
     }
 }
