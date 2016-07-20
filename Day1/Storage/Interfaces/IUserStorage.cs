@@ -12,6 +12,7 @@ namespace Storage.Interfaces
         List<User> Users { get; set; }
         IUserIdIterator IdIterator { get; }
         IUserValidator Validator { get; }
+        List<ISlave> Slaves { get; }
 
         int Add(User user);
         void Delete(User user);

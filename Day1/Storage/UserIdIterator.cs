@@ -13,6 +13,14 @@ namespace Storage
         public UserIdIterator()
         { iterator = GetId(); }
 
+        public UserIdIterator(int index)
+        {
+            for(int i = 0; i <= index; i++)
+            {
+                GetUserId();
+            }
+        }
+
         public int GetUserId()
         {
             if (iterator.MoveNext())
