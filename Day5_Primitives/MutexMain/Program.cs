@@ -13,10 +13,10 @@ namespace MutexMain
         static void Main(string[] args)
         {
             bool createdNew = false;
-            Mutex mutex = new Mutex(false, "MyMutex", out createdNew);
+            Mutex mutex = new Mutex(true, "MyMutex", out createdNew);
 
             // TODO: mutex = new Mutex(..., "MyMutex", ...);
-            mutex.WaitOne();
+            //mutex.WaitOne();
             Console.WriteLine("MutexMain. Is the mutex new? " + createdNew);
             Console.WriteLine("Press any key to release mutex.");
             Console.ReadLine();
