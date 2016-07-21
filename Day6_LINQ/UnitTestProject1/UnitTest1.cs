@@ -211,7 +211,7 @@ namespace UnitTestProject1
             }
             catch (InvalidOperationException ie)
             {
-                //Assert.AreEqual("Sequence contains more than one matching element", ie.Message);
+                Assert.AreEqual("Sequence contains more than one matching element", ie.Message);
             }
             catch (Exception e)
             {
@@ -233,11 +233,11 @@ namespace UnitTestProject1
             }
             catch (InvalidOperationException ie)
             {
-                //Assert.AreEqual("Sequence contains no matching element", ie.Message);
+                Assert.AreEqual("Sequence contains no matching element", ie.Message);
             }
             catch (Exception e)
             {
-                //Assert.Fail("Unexpected exception of type {0} caught: {1}", e.GetType(), e.Message);
+                Assert.Fail("Unexpected exception of type {0} caught: {1}", e.GetType(), e.Message);
             }
         }
 
@@ -269,7 +269,7 @@ namespace UnitTestProject1
             }
             catch (InvalidOperationException ie)
             {
-                //Assert.AreEqual("Sequence contains no matching element", ie.Message);
+                Assert.AreEqual("Sequence contains no matching element", ie.Message);
             }
             catch (Exception e)
             {

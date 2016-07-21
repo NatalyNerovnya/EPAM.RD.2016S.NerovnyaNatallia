@@ -36,12 +36,6 @@ namespace Storage
 
             IdIterator.GetId();
             Users = new List<User>();
-            CapacityOfSlaves = Convert.ToInt32(ConfigurationSettings.AppSettings["slaves"]);
-            Slaves = new List<ISlave>(CapacityOfSlaves);
-            for (int i = 0; i < CapacityOfSlaves; i++)
-            {
-                Slaves.Add(new Slave(this));
-            }
         }
 
         #endregion
@@ -50,10 +44,6 @@ namespace Storage
         public List<User> Users { get; set; }
         public IUserIdIterator IdIterator { get; private set; }
         public IUserValidator Validator { get; private set; }
-        public List<ISlave> Slaves { get; private set; }
-        public int CountSlaves { get; set; }
-        public static int CapacityOfSlaves { get; private set; }
-
         #endregion
 
         #region Public Methods
@@ -98,14 +88,14 @@ namespace Storage
             return ids;
         }
 
-        //This should do slaves
+        
         public void Save()
         {
-            //XmlSerializer formatter = new XmlSerializer(typeof(List<User>));
-            //using (FileStream fs = new FileStream(ConfigurationSettings.AppSettings["path"], FileMode.Create))
-            //{
-            //    formatter.Serialize(fs, Users);
-            //}
+            XmlSerializer formatter = new XmlSerializer(typeof(List<User>));
+            using (FileStream fs = new FileStream(ConfigurationSettings.AppSettings["path"], FileMode.Create))
+            {
+                formatter.Serialize(fs, Users);
+            }
             throw new NotImplementedException();
         }
 
