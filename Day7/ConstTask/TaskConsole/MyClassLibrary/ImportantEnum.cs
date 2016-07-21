@@ -3,7 +3,7 @@
   public enum ImportantEnum
   {
     White,
-    Red,    //0
+    Red = 0,    //0
     Green,  //1
     Orange  //2
   }

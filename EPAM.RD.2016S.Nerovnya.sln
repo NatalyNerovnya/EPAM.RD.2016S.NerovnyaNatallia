@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyClassLibrary", "Day7\Cons
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskConsole", "Day7\ConstTask\TaskConsole\TaskConsole\TaskConsole.csproj", "{395EDC6E-4FA4-4032-9F7F-CE148E3AE889}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProjectCollection", "Day7\UnitTestProjectCollection\UnitTestProjectCollection\UnitTestProjectCollection.csproj", "{C60913D2-6EB7-4133-B6E9-A00CBC6CC15B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,6 +109,10 @@ Global
 		{395EDC6E-4FA4-4032-9F7F-CE148E3AE889}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{395EDC6E-4FA4-4032-9F7F-CE148E3AE889}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{395EDC6E-4FA4-4032-9F7F-CE148E3AE889}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C60913D2-6EB7-4133-B6E9-A00CBC6CC15B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C60913D2-6EB7-4133-B6E9-A00CBC6CC15B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C60913D2-6EB7-4133-B6E9-A00CBC6CC15B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C60913D2-6EB7-4133-B6E9-A00CBC6CC15B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -126,5 +132,6 @@ Global
 		{497FE7C7-7A20-4CCB-BCF7-C1D36FDA78CD} = {4ECE9CA7-FA4C-411F-AEE9-833699623B65}
 		{71EA58D2-D59B-4DB2-BF96-3C80708C7BF6} = {7D82B4C1-F86C-4EFC-9695-53F848FD5CC1}
 		{395EDC6E-4FA4-4032-9F7F-CE148E3AE889} = {7D82B4C1-F86C-4EFC-9695-53F848FD5CC1}
+		{C60913D2-6EB7-4133-B6E9-A00CBC6CC15B} = {7D82B4C1-F86C-4EFC-9695-53F848FD5CC1}
 	EndGlobalSection
 EndGlobal
