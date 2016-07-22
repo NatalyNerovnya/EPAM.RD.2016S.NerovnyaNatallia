@@ -12,7 +12,6 @@ namespace DAL.Interfaces
         List<User> Users { get; set; }
         IUserIdIterator Iterator { get; }
         IValidator Validator { get; }
-        IRole Role { get; }
         
 
         int Add(User user);

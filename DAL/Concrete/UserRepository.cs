@@ -16,14 +16,12 @@ namespace DAL.Concrete
         public List<User> Users { get; set; }
         public IUserIdIterator Iterator { get; private set; }
         public IValidator Validator { get; private set; }
-        public IRole Role { get; private set; }
 
-        public UserRepository(IRole role, IUserIdIterator iterator = null, IValidator val = null )
+        public UserRepository(IUserIdIterator iterator = null, IValidator val = null )
         {
             Iterator = iterator == null ? new UserIdIterator() : iterator;
             Iterator.MakeGenerator();
             Validator = val == null ? new Validator() : val;
-            Role = role;
             Users = new List<User>();
         }
 
@@ -31,7 +29,6 @@ namespace DAL.Concrete
         {
             if (!Validator.Validate(user))
             {
-                Role.AddMethodRespond();
                 user.Id = Iterator.GetUserId();
                 Users.Add(user);
                 return user.Id;
@@ -41,7 +38,6 @@ namespace DAL.Concrete
 
         public void Delete(User user)
         {
-            Role.DeleteMethodRespond();
             Users.Remove(user);
         }
 
