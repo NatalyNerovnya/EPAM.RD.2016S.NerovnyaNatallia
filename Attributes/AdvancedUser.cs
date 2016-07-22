@@ -7,13 +7,7 @@ namespace Attributes
         public int _externalId;
 
         [DefaultValue(3443454)]
-        public int ExternalId
-        {
-            get
-            {
-                return _externalId;
-            }
-        }
+        public int ExternalId => _externalId;
 
         [MatchParameterWithProperty("id", "Id")]
         [MatchParameterWithProperty("externalId", "ExternalId")]
