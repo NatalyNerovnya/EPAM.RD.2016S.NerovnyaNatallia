@@ -9,6 +9,12 @@ namespace DAL.Interfaces
 {
     public interface IUserRepository
     {
+        List<User> Users { get; set; }
+        IUserIdIterator Iterator { get; }
+        IValidator Validator { get; }
+        IRole Role { get; }
+        
+
         int Add(User user);
 
         void Delete(User user);

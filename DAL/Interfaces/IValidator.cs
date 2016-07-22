@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
-    public interface IUserValidator
+    public interface IValidator
     {
         bool Validate(User user);
     }

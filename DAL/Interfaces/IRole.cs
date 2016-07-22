@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
-    public interface IUserIdIterator
+    public interface IRole
     {
-        int GetUserId();
-        IEnumerator<int> MakeGenerator(int initialValue = 0);
+        void AddMethodRespond();
+        void DeleteMethodRespond();
     }
 }
