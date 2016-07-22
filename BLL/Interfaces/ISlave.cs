@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BLL
+namespace BLL.Interfaces
 {
-    public class UserService
+    public interface ISlave : IRole
     {
+        void Update();
     }
 }
