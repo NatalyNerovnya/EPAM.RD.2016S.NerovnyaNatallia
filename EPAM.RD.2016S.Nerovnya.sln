@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Day3", "Day3", "{A5CE548E-5515-4B6B-A52C-3238631A5855}"
 EndProject
@@ -46,6 +46,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "Day1\BLL\BLL.csproj", "{EFB8A3AD-0BAE-473D-BD41-7E58EFD0C762}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "Day1\DAL\DAL.csproj", "{768362B2-36E5-4579-989D-6EAED6017ED7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Day8", "Day8", "{B7388329-987E-4358-8F86-363370DB68DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleAsyncAwait", "Day8\SimpleAsyncAwait\SimpleAsyncAwait.csproj", "{0EECA852-52EA-4F82-8AF3-34AA84FD3BEB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -113,6 +117,10 @@ Global
 		{768362B2-36E5-4579-989D-6EAED6017ED7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{768362B2-36E5-4579-989D-6EAED6017ED7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{768362B2-36E5-4579-989D-6EAED6017ED7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EECA852-52EA-4F82-8AF3-34AA84FD3BEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EECA852-52EA-4F82-8AF3-34AA84FD3BEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EECA852-52EA-4F82-8AF3-34AA84FD3BEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EECA852-52EA-4F82-8AF3-34AA84FD3BEB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -133,5 +141,6 @@ Global
 		{C60913D2-6EB7-4133-B6E9-A00CBC6CC15B} = {7D82B4C1-F86C-4EFC-9695-53F848FD5CC1}
 		{EFB8A3AD-0BAE-473D-BD41-7E58EFD0C762} = {AE14798B-933F-4518-9C53-CA19E572D198}
 		{768362B2-36E5-4579-989D-6EAED6017ED7} = {AE14798B-933F-4518-9C53-CA19E572D198}
+		{0EECA852-52EA-4F82-8AF3-34AA84FD3BEB} = {B7388329-987E-4358-8F86-363370DB68DD}
 	EndGlobalSection
 EndGlobal
