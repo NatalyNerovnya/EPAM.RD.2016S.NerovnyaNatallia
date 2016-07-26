@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Storage.Interfaces
+namespace BLL.Interfaces
 {
-    public interface IEntity
+    public interface IMaster : IRole
     {
-        int Id { get; set; }
+        event Action ActionOnAdd;
+        event Action ActionOnDelete;
     }
 }
-

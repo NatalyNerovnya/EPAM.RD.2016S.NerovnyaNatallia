@@ -1,13 +1,13 @@
-﻿using Storage.Entities;
+﻿using DAL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Storage.Interfaces
+namespace DAL.Interfaces
 {
-    public interface IUserValidator
+    public interface IValidator
     {
         bool Validate(User user);
     }

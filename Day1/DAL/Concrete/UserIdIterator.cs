@@ -1,25 +1,18 @@
-﻿using Storage.Interfaces;
+﻿using DAL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Storage
+namespace DAL.Concrete
 {
     public class UserIdIterator : IUserIdIterator
     {
+
         private IEnumerator<int> iterator;
         public UserIdIterator()
-        { iterator = GetId(); }
-
-        public UserIdIterator(int index)
-        {
-            for(int i = 0; i <= index; i++)
-            {
-                GetUserId();
-            }
-        }
+        { iterator = MakeGenerator(); }
 
         public int GetUserId()
         {
@@ -31,9 +24,9 @@ namespace Storage
             return -1;
         }
 
-        public IEnumerator<int> GetId()
+        public IEnumerator<int> MakeGenerator(int initialValue = 0)
         {
-            int i = 2;
+            int i = initialValue;
             while (true)
             {
                 while (!IsPrime(i))
@@ -48,8 +41,8 @@ namespace Storage
             }
         }
 
-
-        public static bool IsPrime(int n)
+        #region Private Methods
+        private static bool IsPrime(int n)
         {
             if (n >= int.MaxValue)
                 throw new ArgumentException();
@@ -64,5 +57,6 @@ namespace Storage
             }
             return true;
         }
+        #endregion
     }
 }

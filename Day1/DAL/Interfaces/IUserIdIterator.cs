@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Storage.Interfaces
+namespace DAL.Interfaces
 {
     public interface IUserIdIterator
     {
         int GetUserId();
-        IEnumerator<int> GetId();
+        IEnumerator<int> MakeGenerator(int initialValue = 0);
     }
 }
-

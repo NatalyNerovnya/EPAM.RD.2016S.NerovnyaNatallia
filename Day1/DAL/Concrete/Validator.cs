@@ -1,14 +1,14 @@
-﻿using Storage.Entities;
-using Storage.Interfaces;
+﻿using DAL.Entities;
+using DAL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Storage
+namespace DAL.Concrete
 {
-    public class UserValidator : IUserValidator
+    public class Validator : IValidator
     {
         public bool Validate(User user)
         {

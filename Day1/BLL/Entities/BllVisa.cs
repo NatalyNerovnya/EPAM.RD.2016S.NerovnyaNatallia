@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Storage.Entities
+namespace BLL.Entities
 {
     [Serializable]
-    public struct Visa
+    public struct BllVisa
     {
         public string Country { get; set; }
         public DateTime Start { get; set; }

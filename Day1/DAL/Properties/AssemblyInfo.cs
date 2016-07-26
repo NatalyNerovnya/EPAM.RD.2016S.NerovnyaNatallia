@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("TestStorageConsole")]
+[assembly: AssemblyTitle("DAL")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("TestStorageConsole")]
-[assembly: AssemblyCopyright("Copyright ©  2016")]
+[assembly: AssemblyCompany("EPAM Systems")]
+[assembly: AssemblyProduct("DAL")]
+[assembly: AssemblyCopyright("Copyright © EPAM Systems 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("58c01cbb-9db7-4ca4-be35-7246915faea0")]
+[assembly: Guid("768362b2-36e5-4579-989d-6eaed6017ed7")]
 
 // Version information for an assembly consists of the following four values:
 //

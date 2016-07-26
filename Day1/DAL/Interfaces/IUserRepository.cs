@@ -1,14 +1,18 @@
-﻿using Storage.Entities;
+﻿using DAL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Storage.Interfaces
+namespace DAL.Interfaces
 {
     public interface IUserRepository
     {
+        List<User> Users { get; set; }
+        IUserIdIterator Iterator { get; }
+        IValidator Validator { get; }
+        
 
         int Add(User user);
 
@@ -21,7 +25,5 @@ namespace Storage.Interfaces
         void Save();
 
         void Load();
-
-
     }
 }
